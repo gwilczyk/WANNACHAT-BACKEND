@@ -2,15 +2,27 @@ import { createAdapter } from '@socket.io/redis-adapter'
 import compression from 'compression'
 import cookieSession from 'cookie-session'
 import cors from 'cors'
-import { Application, json, urlencoded } from 'express'
+import {
+	Application,
+	json,
+	NextFunction,
+	Request,
+	Response,
+	urlencoded,
+} from 'express'
 import 'express-async-errors'
 import helmet from 'helmet'
 import hpp from 'hpp'
 import http from 'http'
+import HTTP_STATUS from 'http-status-codes'
 import { createClient } from 'redis'
 import { Server } from 'socket.io'
 import { config } from './config'
 import applicationRoutes from './routes'
+import {
+	CustomError,
+	IErrorResponse,
+} from './shared/globals/helpers/error-handler'
 
 const SERVER_PORT = 5000
 
@@ -60,7 +72,28 @@ export class WannaChatServer {
 		applicationRoutes(app)
 	}
 
-	private globalErrorHandler(app: Application): void {}
+	private globalErrorHandler(app: Application): void {
+		app.all('*', (req: Request, res: Response) => {
+			res
+				.status(HTTP_STATUS.NOT_FOUND)
+				.json({ message: `${req.originalUrl} not found` })
+		})
+
+		app.use(
+			(
+				error: IErrorResponse,
+				_req: Request,
+				res: Response,
+				next: NextFunction
+			) => {
+				console.log(error)
+				if (error instanceof CustomError) {
+					return res.status(error.statusCode).json(error.serializeErrors())
+				}
+				next()
+			}
+		)
+	}
 
 	private async startServer(app: Application): Promise<void> {
 		try {
