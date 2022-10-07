@@ -33,8 +33,8 @@ export interface IAuthDocument extends Document {
 export interface ISignupData {
   _id: ObjectId;
   uId: string;
-  email: string;
   username: string;
+  email: string;
   password: string;
   avatarColor: string;
 }
