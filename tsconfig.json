@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "lib": ["DOM", "ES2016"],
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "outDir": "./build",
+    "paths": {
+      "@features/*": ["src/features/*"],
+      "@globals/*": ["src/shared/globals/*"],
+      "@services/*": ["src/shared/services/*"],
+      "@sockets/*": ["src/shared/sockets/*"],
+      "@workers/*": ["src/shared/workers/*"],
+      "@root/*": ["src/*"] /* @root must be the last path! */
+    },
+    "plugins": [{ "transform": "typescript-transform-paths" }, { "transform": "typescript-transform-paths", "afterDeclarations": true }],
+    "pretty": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2016"
+  }
+}
