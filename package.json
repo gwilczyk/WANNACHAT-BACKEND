@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Gwendal Wilczyk",
   "scripts": {
+    "build": "ttsc -p .",
     "dev": "nodemon -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
     "lint:check": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
