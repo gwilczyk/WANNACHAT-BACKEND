@@ -5,7 +5,9 @@ import { Application, json, urlencoded } from 'express'
 import 'express-async-errors'
 import helmet from 'helmet'
 import hpp from 'hpp'
-import { Server } from 'http'
+import http from 'http'
+
+const SERVER_PORT = 5000
 
 export class WannaChatServer {
 	private app: Application
@@ -53,9 +55,20 @@ export class WannaChatServer {
 
 	private globalErrorHandler(app: Application): void {}
 
-	private startServer(app: Application): void {}
+	private async startServer(app: Application): Promise<void> {
+		try {
+			const httpServer: http.Server = new http.Server(app)
+			this.startHttpServer(httpServer)
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
-	private createSocketIO(httpServer: Server): void {}
+	private createSocketIO(httpServer: http.Server): void {}
 
-	private startHttpServer(httpServer: Server): void {}
+	private startHttpServer(httpServer: http.Server): void {
+		httpServer.listen(SERVER_PORT, () => {
+			console.log(`Server running on port ${SERVER_PORT}`)
+		})
+	}
 }
