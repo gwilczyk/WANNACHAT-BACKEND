@@ -10,6 +10,7 @@ import http from 'http'
 import { createClient } from 'redis'
 import { Server } from 'socket.io'
 import { config } from './config'
+import applicationRoutes from './routes'
 
 const SERVER_PORT = 5000
 
@@ -55,7 +56,9 @@ export class WannaChatServer {
 		app.use(urlencoded({ extended: true, limit: '50mb' }))
 	}
 
-	private routesMiddleware(app: Application): void {}
+	private routesMiddleware(app: Application): void {
+		applicationRoutes(app)
+	}
 
 	private globalErrorHandler(app: Application): void {}
 
