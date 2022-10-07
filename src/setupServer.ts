@@ -1,4 +1,5 @@
 import { createAdapter } from '@socket.io/redis-adapter'
+import Logger from 'bunyan'
 import compression from 'compression'
 import cookieSession from 'cookie-session'
 import cors from 'cors'
@@ -25,6 +26,7 @@ import {
 } from './shared/globals/helpers/error-handler'
 
 const SERVER_PORT = 5000
+const log: Logger = config.createLogger('setupServer.ts')
 
 export class WannaChatServer {
 	private app: Application
@@ -86,7 +88,7 @@ export class WannaChatServer {
 				res: Response,
 				next: NextFunction
 			) => {
-				console.log(error)
+				log.error(error)
 				if (error instanceof CustomError) {
 					return res.status(error.statusCode).json(error.serializeErrors())
 				}
@@ -102,7 +104,7 @@ export class WannaChatServer {
 			this.startHttpServer(httpServer)
 			this.socketIOConnections(socketIO)
 		} catch (error) {
-			console.log(error)
+			log.error(error)
 		}
 	}
 
@@ -121,9 +123,9 @@ export class WannaChatServer {
 	}
 
 	private startHttpServer(httpServer: http.Server): void {
-		console.log(`Server has started with process ${process.pid}`)
+		log.info(`Server has started with process ${process.pid}`)
 		httpServer.listen(SERVER_PORT, () => {
-			console.log(`Server running on port ${SERVER_PORT}`)
+			log.info(`Server running on port ${SERVER_PORT}`)
 		})
 	}
 
