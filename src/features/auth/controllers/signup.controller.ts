@@ -43,7 +43,7 @@ export class Signup {
 
     /* Add to Redis cache */
     const userDataForCache: IUserDocument = Signup.prototype.userData(authData, userObjectId);
-    userDataForCache.profilePicture = `https://res/cloudinary.com/deq8aqjgy/image/upload/v${result.version}/${userObjectId}`;
+    userDataForCache.profilePicture = `https://res.cloudinary.com/deq8aqjgy/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', authData });
