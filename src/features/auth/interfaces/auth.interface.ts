@@ -1,3 +1,4 @@
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { ObjectId } from 'mongodb';
 import { Document } from 'mongoose';
 
@@ -40,5 +41,5 @@ export interface ISignupData {
 }
 
 export interface IAuthJob {
-  value?: string | IAuthDocument;
+  value?: string | IAuthDocument | IUserDocument;
 }
