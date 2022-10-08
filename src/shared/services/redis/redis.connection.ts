@@ -2,11 +2,11 @@ import { config } from '@root/config';
 import { BaseCache } from '@services/redis/base.cache';
 import Logger from 'bunyan';
 
-const log: Logger = config.createLogger('redisConnection');
+const log: Logger = config.createLogger('redis.connection.ts');
 
 class RedisConnection extends BaseCache {
   constructor() {
-    super('redisConnection');
+    super('redis.connection.ts');
   }
 
   async connect(): Promise<void> {
