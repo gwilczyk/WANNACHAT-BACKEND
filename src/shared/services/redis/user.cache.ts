@@ -4,11 +4,11 @@ import { BaseCache } from '@services/redis/base.cache';
 import { IUserDocument } from '@user/interfaces/user.interface';
 import Logger from 'bunyan';
 
-const log: Logger = config.createLogger('user.cache.ts');
+const log: Logger = config.createLogger('userCache');
 
 export class UserCache extends BaseCache {
   constructor() {
-    super('user.cache.ts');
+    super('userCache');
   }
 
   public async saveUserToCache(key: string, userId: string, createdUser: IUserDocument): Promise<void> {

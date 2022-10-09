@@ -3,10 +3,11 @@ import { createBullBoard } from '@bull-board/api';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 import { config } from '@root/config';
+import { IUserJob } from '@user/interfaces/user.interface';
 import Queue, { Job } from 'bull';
 import Logger from 'bunyan';
 
-type IBaseJobData = IAuthJob;
+type IBaseJobData = IAuthJob | IUserJob;
 
 let bullAdapters: BullAdapter[] = [];
 
@@ -33,11 +34,9 @@ export abstract class BaseQueue {
     this.queue.on('completed', (job: Job) => {
       job.remove();
     });
-
     this.queue.on('global:completed', (jobId: string) => {
       this.log.info(`Job ${jobId} completed`);
     });
-
     this.queue.on('global:stalled', (jobId: string) => {
       this.log.info(`Job ${jobId} is stalled`);
     });
