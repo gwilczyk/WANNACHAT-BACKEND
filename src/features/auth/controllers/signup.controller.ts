@@ -4,6 +4,7 @@ import { joiValidation } from '@globals/decorators/joi-validation.decorators';
 import { uploads } from '@globals/helpers/cloudinary-upload';
 import { BadRequestError } from '@globals/helpers/error-handler';
 import { Helpers } from '@globals/helpers/helpers';
+import { config } from '@root/config';
 import { authService } from '@services/db/auth.service';
 import { authQueue } from '@services/queues/auth.queue';
 import { userQueue } from '@services/queues/user.queue';
@@ -12,6 +13,7 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 import { UploadApiResponse } from 'cloudinary';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
+import JWT from 'jsonwebtoken';
 import { omit } from 'lodash';
 import { ObjectId } from 'mongodb';
 
@@ -52,9 +54,12 @@ export class Signup {
     /* Add user to database */
     omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']);
     authQueue.addAuthUserJob('addAuthUserToDB', { value: userDataForCache });
-    userQueue.addUserJob('addUserToDB', { value: userDataForCache });
+    userQueue.addUserJob({ name: 'addUserToDB', data: { value: userDataForCache } });
 
-    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', authData });
+    const userJwt: string = Signup.prototype.signToken(authData, userObjectId);
+    req.session = { jwt: userJwt };
+
+    res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
   }
 
   private signupData(data: ISignupData): IAuthDocument {
@@ -68,6 +73,19 @@ export class Signup {
       avatarColor,
       createdAt: new Date()
     } as IAuthDocument;
+  }
+
+  private signToken(data: IAuthDocument, userObjectId: ObjectId): string {
+    return JWT.sign(
+      {
+        userId: userObjectId,
+        uId: data.uId,
+        email: data.email,
+        username: data.username,
+        avatarColor: data.avatarColor
+      },
+      config.JWT_TOKEN!
+    );
   }
 
   private userData(data: IAuthDocument, userObjectId: ObjectId): IUserDocument {
