@@ -1,6 +1,6 @@
 import Joi, { ObjectSchema } from 'joi';
 
-const loginSchema: ObjectSchema = Joi.object().keys({
+const signinSchema: ObjectSchema = Joi.object().keys({
   email: Joi.string().required().email().messages({
     'string.base': 'Email must be of type string',
     'string.email': 'Email must be valid',
@@ -14,4 +14,4 @@ const loginSchema: ObjectSchema = Joi.object().keys({
   })
 });
 
-export { loginSchema };
+export { signinSchema };

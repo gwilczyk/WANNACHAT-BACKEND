@@ -24,7 +24,7 @@ export class Signup {
   public async create(req: Request, res: Response): Promise<void> {
     const { username, password, email, avatarColor, avatarImage } = req.body;
 
-    const userExists: IAuthDocument = await authService.getUserByUsernameOrEmail({ username, email });
+    const userExists: IAuthDocument = await authService.getAuthUserByUsernameOrEmail({ username, email });
     if (userExists) {
       throw new BadRequestError('Invalid credentials');
     }
@@ -48,7 +48,7 @@ export class Signup {
 
     /* Add user to Redis cache */
     const userDataForCache: IUserDocument = Signup.prototype.userData(authData, userObjectId);
-    userDataForCache.profilePicture = `https://res.cloudinary.com/deq8aqjgy/image/upload/v${result.version}/${userObjectId}`;
+    userDataForCache.profilePicture = `https://res.cloudinary.com/${config.CLOUD_NAME}/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     /* Add user to database */
