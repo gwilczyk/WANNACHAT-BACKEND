@@ -52,3 +52,9 @@ withCredentials: true
   "email": "jane@mail.com",
   "password": "P4ssword"
 }
+
+###
+GET {{baseUrl}}/{{urlPath}}/signout
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
