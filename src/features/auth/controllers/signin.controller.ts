@@ -5,10 +5,10 @@ import { BadRequestError } from '@globals/helpers/error-handler';
 import { config } from '@root/config';
 import { authService } from '@services/db/auth.service';
 import { userService } from '@services/db/user.service';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import JWT from 'jsonwebtoken';
-import { IUserDocument } from './../../user/interfaces/user.interface';
 
 export class Signin {
   @joiValidation(signinSchema)
@@ -37,6 +37,7 @@ export class Signin {
       },
       config.JWT_TOKEN!
     );
+
     req.session = { jwt: userJwt };
 
     const userDocument: IUserDocument = {
