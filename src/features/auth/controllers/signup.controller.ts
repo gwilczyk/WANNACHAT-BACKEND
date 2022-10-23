@@ -52,9 +52,9 @@ export class Signup {
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     /* Add user to database */
-    omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']);
-    authQueue.addAuthUserJob('addAuthUserToDB', { value: userDataForCache });
-    userQueue.addUserJob({ name: 'addUserToDB', data: { value: userDataForCache } });
+    const userWithOmission = omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']);
+    authQueue.addAuthUserJob('addAuthUserToDB', { value: authData });
+    userQueue.addUserJob({ name: 'addUserToDB', data: { value: userWithOmission } });
 
     const userJwt: string = Signup.prototype.signToken(authData, userObjectId);
     req.session = { jwt: userJwt };
