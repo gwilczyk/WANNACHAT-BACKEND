@@ -14,7 +14,8 @@
     "noUnusedParameters": false,
     "outDir": "./build",
     "paths": {
-      "@features/*": ["src/features/*"],
+      "@auth/*": ["src/features/auth/*"],
+      "@user/*": ["src/features/user/*"],
       "@globals/*": ["src/shared/globals/*"],
       "@services/*": ["src/shared/services/*"],
       "@sockets/*": ["src/shared/sockets/*"],

@@ -16,7 +16,7 @@ import { createClient } from 'redis';
 import { Server } from 'socket.io';
 
 const SERVER_PORT = 5000;
-const log: Logger = config.createLogger('setupServer.ts');
+const log: Logger = config.createLogger('setupServer');
 
 export class WannaChatServer {
   private app: Application;
