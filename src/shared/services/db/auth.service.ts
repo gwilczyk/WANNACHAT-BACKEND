@@ -12,6 +12,14 @@ class AuthService {
     return user;
   }
 
+  public async getAuthUserByPasswordToken(token: string): Promise<IAuthDocument> {
+    const user: IAuthDocument = (await AuthModel.findOne({
+      passwordResetToken: token,
+      passwordResetExpires: { $gt: Date.now() }
+    }).exec()) as IAuthDocument;
+    return user;
+  }
+
   public async getAuthUserByUsernameOrEmail({ username, email }: { username: string; email: string }): Promise<IAuthDocument> {
     const query = {
       $or: [{ username: Helpers.capitalizeFirstLetter(username) }, { email: Helpers.lowerCase(email) }]
