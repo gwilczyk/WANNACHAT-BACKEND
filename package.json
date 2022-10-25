@@ -2,7 +2,7 @@
   "name": "wannachat-backend",
   "version": "1.0.0",
   "main": "app.js",
-  "license": "MIT",
+  "license": "ISC",
   "author": "Gwendal Wilczyk",
   "scripts": {
     "build": "ttsc -p .",
@@ -10,7 +10,8 @@
     "lint:check": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
     "prettier:check": "prettier --check 'src/**/*.{ts,json}'",
-    "prettier:fix": "prettier --write 'src/**/*.{ts,json}'"
+    "prettier:fix": "prettier --write 'src/**/*.{ts,json}'",
+    "test": "jest --coverage=true --maxWorkers=1 --forceExit --detectOpenHandles --watchAll=true"
   },
   "dependencies": {
     "@bull-board/express": "^4.4.0",
@@ -62,6 +63,7 @@
     "@types/lodash": "^4.14.186",
     "@types/node": "*",
     "@types/nodemailer": "^6.4.6",
+    "@types/redis-info": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "eslint": "^8.24.0",

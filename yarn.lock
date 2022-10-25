@@ -1045,6 +1045,11 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
+"@types/redis-info@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/redis-info/-/redis-info-3.0.0.tgz#c925cd7249d71c3d9e12ef5b15168bdf26111b1d"
+  integrity sha512-uvjYcIvPGAIJvnRT3y6jacP1Qqs3hNQLBeKDvDtJOh5ADISsMsMJK15WzP++cfRfAwb1ZafAXwC3YYC/uKAENQ==
+
 "@types/redis@^2.8.0":
   version "2.8.32"
   resolved "https://registry.yarnpkg.com/@types/redis/-/redis-2.8.32.tgz#1d3430219afbee10f8cfa389dad2571a05ecfb11"
