@@ -17,6 +17,7 @@
       "@auth/*": ["src/features/auth/*"],
       "@user/*": ["src/features/user/*"],
       "@globals/*": ["src/shared/globals/*"],
+      "@mocks/*": ["src/mocks/*"],
       "@services/*": ["src/shared/services/*"],
       "@sockets/*": ["src/shared/sockets/*"],
       "@workers/*": ["src/shared/workers/*"],
