@@ -2,6 +2,7 @@ import { CustomError, IErrorResponse } from '@globals/helpers/error-handler';
 import { config } from '@root/config';
 import applicationRoutes from '@root/routes';
 import { createAdapter } from '@socket.io/redis-adapter';
+import { SocketIOPostsHandler } from '@sockets/posts.sockets';
 import Logger from 'bunyan';
 import compression from 'compression';
 import cookieSession from 'cookie-session';
@@ -111,6 +112,7 @@ export class WannaChatServer {
   }
 
   private socketIOConnections(io: Server): void {
-    log.info('socketIOConnections');
+    const postsSocketIOHandler: SocketIOPostsHandler = new SocketIOPostsHandler(io);
+    postsSocketIOHandler.listen();
   }
 }
