@@ -18,7 +18,6 @@ export class Password {
   @joiValidation(emailSchema)
   public async create(req: Request, res: Response): Promise<void> {
     const { email } = req.body;
-    console.log('🚀 ~ file: password.controller.ts ~ line 21 ~ Password ~ create ~ email', email);
     const existingUser: IAuthDocument = await authService.getAuthUserByEmail(email);
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
