@@ -29,10 +29,10 @@ export interface IGetPostsQuery {
 }
 
 export interface ISavePostToCache {
-  key: ObjectId | string;
-  currentUserId: string;
-  uId: string;
   createdPost: IPostDocument;
+  currentUserId: string;
+  key: ObjectId | string;
+  uId: string;
 }
 
 export interface IPostJobData {
