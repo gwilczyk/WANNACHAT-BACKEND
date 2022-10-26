@@ -49,33 +49,6 @@ export interface ISocketData {
   blockedBy: string;
 }
 
-export interface IUser {
-  _id: string | ObjectId;
-  authId: string | ObjectId;
-  uId?: string;
-  username: string;
-  email: string;
-  password?: string;
-  avatarColor: string;
-  createdAt: Date;
-  postsCount: number;
-  work: string;
-  school: string;
-  quote: string;
-  location: string;
-  blocked: mongoose.Types.ObjectId[];
-  blockedBy: mongoose.Types.ObjectId[];
-  followersCount: number;
-  followingCount: number;
-  notifications: INotificationSettings;
-  social: ISocialLinks;
-  bgImageVersion: string;
-  bgImageId: string;
-  profilePicture: string;
-  passwordResetToken?: string;
-  passwordResetExpires?: number | string;
-}
-
 export interface IUserDocument extends Document {
   _id: string | ObjectId;
   authId: string | ObjectId;

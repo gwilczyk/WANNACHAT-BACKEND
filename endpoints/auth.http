@@ -64,3 +64,24 @@ GET {{baseUrl}}/{{urlPath}}/currentuser
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
+
+###
+POST {{baseUrl}}/{{urlPath}}/forgot-password
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "email": "jane@mail.com"
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/reset-password/b107e96ad5f7046b623627e258f1ae88efeb3f5c
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "password": "n3w_p4ssword",
+  "confirmPassword": "n3w_p4ssword"
+}
