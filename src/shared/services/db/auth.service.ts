@@ -1,4 +1,4 @@
-import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { IAuthDocument } from '@auth/interfaces/auth.interfaces';
 import { AuthModel } from '@auth/models/auth.model';
 import { Helpers } from '@globals/helpers/helpers';
 

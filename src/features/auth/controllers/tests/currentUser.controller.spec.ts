@@ -2,7 +2,7 @@ import { CurrentUser } from '@auth/controllers/currentUser.controller';
 import { authMockRequest, authMockResponse, authUserPayload } from '@mocks/auth.mock';
 import { existingUser } from '@mocks/user.mock';
 import { UserCache } from '@services/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { Request, Response } from 'express';
 
 jest.mock('@services/queues/base.queue');

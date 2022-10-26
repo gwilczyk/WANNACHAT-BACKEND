@@ -1,4 +1,4 @@
-import { IResetPasswordParams } from '@user/interfaces/user.interface';
+import { IResetPasswordParams } from '@user/interfaces/user.interfaces';
 import ejs from 'ejs';
 import fs from 'fs';
 

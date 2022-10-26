@@ -1,4 +1,4 @@
-import { AuthPayload, IAuthDocument } from '@auth/interfaces/auth.interface';
+import { AuthPayload, IAuthDocument } from '@auth/interfaces/auth.interfaces';
 import { Response } from 'express';
 
 export interface IAuthMock {

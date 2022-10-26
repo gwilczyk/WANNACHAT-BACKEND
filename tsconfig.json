@@ -18,6 +18,8 @@
       "@user/*": ["src/features/user/*"],
       "@globals/*": ["src/shared/globals/*"],
       "@mocks/*": ["src/mocks/*"],
+      "@posts/*": ["src/features/posts/*"],
+      "@reactions/*": ["src/features/reactions/*"],
       "@services/*": ["src/shared/services/*"],
       "@sockets/*": ["src/shared/sockets/*"],
       "@workers/*": ["src/shared/workers/*"],

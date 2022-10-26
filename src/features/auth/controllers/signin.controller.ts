@@ -1,11 +1,11 @@
-import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { IAuthDocument } from '@auth/interfaces/auth.interfaces';
 import { signinSchema } from '@auth/schemes/signin.scheme';
 import { joiValidation } from '@globals/decorators/joi-validation.decorators';
 import { BadRequestError } from '@globals/helpers/error-handler';
 import { config } from '@root/config';
 import { authService } from '@services/db/auth.service';
 import { userService } from '@services/db/user.service';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import JWT from 'jsonwebtoken';

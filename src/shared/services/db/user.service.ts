@@ -1,4 +1,4 @@
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { UserModel } from '@user/models/user.model';
 import mongoose from 'mongoose';
 

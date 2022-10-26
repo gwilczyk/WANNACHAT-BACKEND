@@ -1,4 +1,4 @@
-import { IAuthDocument, ISignupData } from '@auth/interfaces/auth.interface';
+import { IAuthDocument, ISignupData } from '@auth/interfaces/auth.interfaces';
 import { signupSchema } from '@auth/schemes/signup.scheme';
 import { joiValidation } from '@globals/decorators/joi-validation.decorators';
 import { uploads } from '@globals/helpers/cloudinary-upload';
@@ -9,7 +9,7 @@ import { authService } from '@services/db/auth.service';
 import { authQueue } from '@services/queues/auth.queue';
 import { userQueue } from '@services/queues/user.queue';
 import { UserCache } from '@services/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { UploadApiResponse } from 'cloudinary';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';

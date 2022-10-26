@@ -1,4 +1,4 @@
-import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { IAuthDocument } from '@auth/interfaces/auth.interfaces';
 import { emailSchema, passwordSchema } from '@auth/schemes/password.scheme';
 import { joiValidation } from '@globals/decorators/joi-validation.decorators';
 import { BadRequestError } from '@globals/helpers/error-handler';
@@ -7,7 +7,7 @@ import { authService } from '@services/db/auth.service';
 import { forgotPasswordTemplate } from '@services/emails/templates/forgotPassword/forgotPasswordTemplate';
 import { resetPasswordTemplate } from '@services/emails/templates/resetPassword/resetPasswordTemplate';
 import { emailQueue } from '@services/queues/email.queue';
-import { IResetPasswordParams } from '@user/interfaces/user.interface';
+import { IResetPasswordParams } from '@user/interfaces/user.interfaces';
 import crypto from 'crypto';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';

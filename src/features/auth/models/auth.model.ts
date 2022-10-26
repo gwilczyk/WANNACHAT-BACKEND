@@ -1,4 +1,4 @@
-import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { IAuthDocument } from '@auth/interfaces/auth.interfaces';
 import { compare, hash } from 'bcryptjs';
 import { model, Model, Schema } from 'mongoose';
 

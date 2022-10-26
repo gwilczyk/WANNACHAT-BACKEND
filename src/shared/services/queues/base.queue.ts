@@ -1,9 +1,9 @@
-import { IAuthJob } from '@auth/interfaces/auth.interface';
+import { IAuthJob } from '@auth/interfaces/auth.interfaces';
 import { createBullBoard } from '@bull-board/api';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 import { config } from '@root/config';
-import { IEmailJob, IUserJob } from '@user/interfaces/user.interface';
+import { IEmailJob, IUserJob } from '@user/interfaces/user.interfaces';
 import Queue, { Job } from 'bull';
 import Logger from 'bunyan';
 
