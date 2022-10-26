@@ -216,7 +216,6 @@ describe('Signup', () => {
         avatarImage: 'data:text/plain;base64,SGVsbG8sIFdvcmxkIQ=='
       }
     ) as Request;
-
     const res: Response = authMockResponse();
 
     jest.spyOn(authService, 'getAuthUserByUsernameOrEmail').mockResolvedValue(null as any);

@@ -1,0 +1,31 @@
+import { IUserDocument } from '@user/interfaces/user.interface';
+
+export const mergedAuthAndUserData: IUserDocument = {
+  _id: '605727cd646eb50e668a4e13',
+  authId: '60263f14648fed5246e322d3',
+  username: 'Jane',
+  email: 'jane@mail.com',
+  password: 'P4ssword',
+  avatarColor: '#9c27b0',
+  uId: '1621613119252066',
+  postsCount: 0,
+  work: '',
+  school: '',
+  quote: '',
+  location: '',
+  blocked: [],
+  blockedBy: [],
+  followersCount: 0,
+  followingCount: 0,
+  notifications: { messages: true, reactions: true, comments: true, follows: true },
+  social: { facebook: '', instagram: '', twitter: '', youtube: '' },
+  bgImageVersion: '',
+  bgImageId: '',
+  profilePicture: 'https://res.cloudinary.com/ratingapp/image/upload/605727cd646eb50e668a4e13',
+  createdAt: '2022-08-31T07:42:24.451Z'
+  // birthday: { month: '', day: '' },
+  // gender: '',
+  // about: '',
+  // relationship: '',
+  // placesLived: [],
+} as unknown as IUserDocument;
