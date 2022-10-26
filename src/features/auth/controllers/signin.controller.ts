@@ -5,10 +5,10 @@ import { BadRequestError } from '@globals/helpers/error-handler';
 import { config } from '@root/config';
 import { authService } from '@services/db/auth.service';
 import { userService } from '@services/db/user.service';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import JWT from 'jsonwebtoken';
-import { IUserDocument } from './../../user/interfaces/user.interface';
 
 export class Signin {
   @joiValidation(signinSchema)
@@ -37,6 +37,21 @@ export class Signin {
       },
       config.JWT_TOKEN!
     );
+
+    // const templateParams: IResetPasswordParams = {
+    //   username: existingUser.username!,
+    //   email: existingUser.email!,
+    //   ipaddress: publicIp.address(),
+    //   date: moment().format('DD/MM/YYYY HH:mm')
+    // };
+    // const resetLink = `${config.CLIENT_URL}/reset-password?token=1237123789789`;
+    // const template: string = resetPasswordTemplate.passwordResetConfirmationTemplate(templateParams);
+    // emailQueue.addEmailJob('forgotPasswordEmail', {
+    //   template,
+    //   receiverEmail: 'damian.mraz@ethereal.email',
+    //   subject: 'Password reset confirmation'
+    // });
+
     req.session = { jwt: userJwt };
 
     const userDocument: IUserDocument = {
