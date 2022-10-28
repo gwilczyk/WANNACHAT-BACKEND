@@ -1,6 +1,7 @@
 import { joiValidation } from '@globals/decorators/joi-validation.decorators';
 import { IPostDocument } from '@posts/interfaces/posts.interfaces';
 import { postSchema } from '@posts/schemes/posts.scheme';
+import { postsQueue } from '@services/queues/posts.queue';
 import { PostsCache } from '@services/redis/posts.cache';
 import { socketIOPostsObject } from '@sockets/posts.sockets';
 import { Request, Response } from 'express';
@@ -41,6 +42,8 @@ export class Create {
       key: postObjectId,
       uId: `${req.currentUser!.uId}`
     });
+
+    postsQueue.addPostJob('addPostToDB', { key: req.currentUser!.userId, value: createdPost });
 
     res.status(HTTP_STATUS.CREATED).json({ message: 'Post created successfully' });
   }
