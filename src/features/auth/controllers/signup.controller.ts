@@ -34,11 +34,11 @@ export class Signup {
     const uId = `${Helpers.generateRandomIntegers(12)}`;
     const authData: IAuthDocument = Signup.prototype.signupData({
       _id: authObjectId,
-      uId,
-      username,
+      avatarColor,
       email,
       password,
-      avatarColor
+      uId,
+      username
     });
 
     const result: UploadApiResponse = (await uploads(avatarImage, `${userObjectId}`, true, true)) as UploadApiResponse;

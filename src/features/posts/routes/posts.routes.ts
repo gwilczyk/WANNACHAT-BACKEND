@@ -10,6 +10,7 @@ class PostsRoutes {
   }
 
   public routes(): Router {
+    this.router.post('/post-with-image', authMiddleware.checkAuthentication, Create.prototype.postWithImage);
     this.router.post('/post', authMiddleware.checkAuthentication, Create.prototype.post);
 
     return this.router;
