@@ -2,6 +2,7 @@ import { joiValidation } from '@globals/decorators/joi-validation.decorators';
 import { IPostDocument } from '@posts/interfaces/posts.interfaces';
 import { postSchema } from '@posts/schemes/posts.scheme';
 import { PostsCache } from '@services/redis/posts.cache';
+import { socketIOPostsObject } from '@sockets/posts.sockets';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { ObjectId } from 'mongodb';
@@ -31,6 +32,8 @@ export class Create {
       createdAt: new Date(),
       reactions: { like: 0, love: 0, happy: 0, wow: 0, sad: 0, angry: 0 }
     } as IPostDocument;
+
+    socketIOPostsObject.emit('add post', createdPost);
 
     await postsCache.savePostToCache({
       createdPost,
