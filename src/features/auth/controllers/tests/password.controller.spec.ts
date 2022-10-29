@@ -2,7 +2,7 @@
 import { Password } from '@auth/controllers/password.controller';
 import { CustomError } from '@globals/helpers/error-handler';
 import { authMock, authMockRequest, authMockResponse } from '@mocks/auth.mock';
-import { authService } from '@services/db/auth.services';
+import { authServices } from '@services/db/auth.services';
 import { emailQueue } from '@services/queues/email.queue';
 import { Request, Response } from 'express';
 
@@ -47,7 +47,7 @@ describe('Password', () => {
     it('should throw "Invalid credentials" error with statusCode 400 if email does not exist in database', () => {
       const req: Request = authMockRequest({}, { email: WRONG_EMAIL }) as Request;
       const res: Response = authMockResponse();
-      jest.spyOn(authService, 'getAuthUserByEmail').mockResolvedValue(null as any);
+      jest.spyOn(authServices, 'getAuthUserByEmail').mockResolvedValue(null as any);
       Password.prototype.create(req, res).catch((error: CustomError) => {
         expect(error.statusCode).toEqual(400);
         expect(error.serializeErrors().message).toEqual('Invalid credentials');
@@ -57,7 +57,7 @@ describe('Password', () => {
     it('should send correct json response', async () => {
       const req: Request = authMockRequest({}, { email: CORRECT_EMAIL }) as Request;
       const res: Response = authMockResponse();
-      jest.spyOn(authService, 'getAuthUserByEmail').mockResolvedValue(authMock);
+      jest.spyOn(authServices, 'getAuthUserByEmail').mockResolvedValue(authMock);
       jest.spyOn(emailQueue, 'addEmailJob');
       await Password.prototype.create(req, res);
       expect(emailQueue.addEmailJob).toHaveBeenCalled();
@@ -92,7 +92,7 @@ describe('Password', () => {
         token: ''
       }) as Request;
       const res: Response = authMockResponse();
-      jest.spyOn(authService, 'getAuthUserByPasswordToken').mockResolvedValue(null as any);
+      jest.spyOn(authServices, 'getAuthUserByPasswordToken').mockResolvedValue(null as any);
       Password.prototype.update(req, res).catch((error: CustomError) => {
         expect(error.statusCode).toEqual(400);
         expect(error.serializeErrors().message).toEqual('Reset token has expired.');
@@ -104,7 +104,7 @@ describe('Password', () => {
         token: '12sde3'
       }) as Request;
       const res: Response = authMockResponse();
-      jest.spyOn(authService, 'getAuthUserByPasswordToken').mockResolvedValue(authMock);
+      jest.spyOn(authServices, 'getAuthUserByPasswordToken').mockResolvedValue(authMock);
       jest.spyOn(emailQueue, 'addEmailJob');
       await Password.prototype.update(req, res);
       expect(emailQueue.addEmailJob).toHaveBeenCalled();

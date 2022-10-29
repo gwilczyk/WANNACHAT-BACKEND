@@ -2,7 +2,7 @@ import { Signup } from '@auth/controllers/signup.controller';
 import * as cloudinaryUpload from '@globals/helpers/cloudinary-upload';
 import { CustomError } from '@globals/helpers/error-handler';
 import { authMock, authMockRequest, authMockResponse } from '@mocks/auth.mock';
-import { authService } from '@services/db/auth.services';
+import { authServices } from '@services/db/auth.services';
 import { UserCache } from '@services/redis/user.cache';
 import { Request, Response } from 'express';
 
@@ -197,7 +197,7 @@ describe('Signup', () => {
 
     const res: Response = authMockResponse();
 
-    jest.spyOn(authService, 'getAuthUserByUsernameOrEmail').mockResolvedValue(authMock);
+    jest.spyOn(authServices, 'getAuthUserByUsernameOrEmail').mockResolvedValue(authMock);
 
     Signup.prototype.create(req, res).catch((error: CustomError) => {
       expect(error.statusCode).toEqual(400);
@@ -218,7 +218,7 @@ describe('Signup', () => {
     ) as Request;
     const res: Response = authMockResponse();
 
-    jest.spyOn(authService, 'getAuthUserByUsernameOrEmail').mockResolvedValue(null as any);
+    jest.spyOn(authServices, 'getAuthUserByUsernameOrEmail').mockResolvedValue(null as any);
     const userSpy = jest.spyOn(UserCache.prototype, 'saveUserToCache');
     jest.spyOn(cloudinaryUpload, 'uploads').mockImplementation((): any => Promise.resolve({ version: '123123123', public_id: '123456' }));
     await Signup.prototype.create(req, res);
