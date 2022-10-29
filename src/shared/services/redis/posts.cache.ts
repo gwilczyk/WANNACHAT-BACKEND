@@ -91,6 +91,49 @@ export class PostsCache extends BaseCache {
     }
   }
 
+  public async getUserPostsFromCache(key: string, uId: number): Promise<IPostDocument[]> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+
+      const reply: string[] = await this.client.ZRANGE(key, uId, uId, { BY: 'SCORE', REV: true });
+
+      const multi: ReturnType<typeof this.client.multi> = this.client.multi();
+      for (const value of reply) {
+        multi.HGETALL(`posts:${value}`);
+      }
+      const replies: PostsCacheMultiType = (await multi.exec()) as PostsCacheMultiType;
+
+      const postsReply: IPostDocument[] = [];
+      for (const post of replies as IPostDocument[]) {
+        post.commentsCount = Helpers.parseJson(`${post.commentsCount}`) as number;
+        post.reactions = Helpers.parseJson(`${post.reactions}`) as IReactions;
+        post.createdAt = new Date(Helpers.parseJson(`${post.createdAt}`)) as Date;
+
+        postsReply.push(post);
+      }
+
+      return postsReply;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
+
+  public async getUserPostsNumberInCache(uId: number): Promise<number> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+      const count: number = await this.client.ZCOUNT('post', uId, uId);
+      return count;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
+
   public async savePostToCache(data: ISavePostToCache): Promise<void> {
     const { createdPost, currentUserId, key, uId } = data;
     const {
