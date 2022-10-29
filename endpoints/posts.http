@@ -2,7 +2,19 @@
 @urlPath = api/v1
 
 ###
-POST {{baseUrl}}/{{urlPath}}/post
+GET {{baseUrl}}/{{urlPath}}/posts/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/posts/image/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -17,7 +29,7 @@ withCredentials: true
 }
 
 ###
-POST {{baseUrl}}/{{urlPath}}/post
+POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -31,7 +43,7 @@ withCredentials: true
   "profilePicture": ""
 }
 ###
-POST {{baseUrl}}/{{urlPath}}/post
+POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -45,7 +57,7 @@ withCredentials: true
   "profilePicture": ""
 }
 ###
-POST {{baseUrl}}/{{urlPath}}/post
+POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -59,7 +71,7 @@ withCredentials: true
   "profilePicture": ""
 }
 ###
-POST {{baseUrl}}/{{urlPath}}/post
+POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -73,9 +85,8 @@ withCredentials: true
   "profilePicture": ""
 }
 
-
 ###
-POST {{baseUrl}}/{{urlPath}}/post-with-image
+POST {{baseUrl}}/{{urlPath}}/posts/image/post
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
