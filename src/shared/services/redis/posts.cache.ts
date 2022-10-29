@@ -16,6 +16,28 @@ export class PostsCache extends BaseCache {
     super('postsCache');
   }
 
+  public async deletePostFromCache(key: string, currentUserId: string): Promise<void> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+
+      const postsCount: string[] = await this.client.HMGET(`users:${currentUserId}`, 'postsCount');
+      const decrementedPostCount: number = parseInt(postsCount[0], 10) - 1;
+
+      const multi: ReturnType<typeof this.client.multi> = this.client.multi();
+      multi.ZREM('post', `${key}`);
+      multi.DEL(`posts:${key}`);
+      multi.DEL(`comments:${key}`);
+      multi.DEL(`reactions:${key}`);
+      multi.HSET(`users:${currentUserId}`, ['postsCount', decrementedPostCount]);
+      await multi.exec();
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
+
   public async getPostsFromCache(key: string, start: number, end: number): Promise<IPostDocument[]> {
     try {
       if (!this.client.isOpen) {
@@ -205,7 +227,7 @@ export class PostsCache extends BaseCache {
       multi.ZADD('post', { score: parseInt(uId, 10), value: `${key}` });
       multi.HSET(`posts:${key}`, dataToSave);
       multi.HSET(`users:${currentUserId}`, ['postsCount', incrementedPostCount]);
-      multi.exec();
+      await multi.exec();
     } catch (error) {
       log.error(error);
       throw new ServerError('Server error. Try again.');

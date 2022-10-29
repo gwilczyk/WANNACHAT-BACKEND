@@ -100,3 +100,9 @@ withCredentials: true
   "privacy": "Public",
   "profilePicture": ""
 }
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/posts/635d26833621995bd8f36a6e
+Content-Type: application/json
+Accept: application/json
+withCredentials: true

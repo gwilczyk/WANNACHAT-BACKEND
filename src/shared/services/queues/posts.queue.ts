@@ -1,11 +1,12 @@
 import { IPostJobData } from '@posts/interfaces/posts.interfaces';
 import { BaseQueue } from '@services/queues/base.queue';
-import { postsWorker } from '@workers/posts.worker';
+import { postsWorkers } from '@workers/posts.workers';
 
 class PostsQueue extends BaseQueue {
   constructor() {
     super('postsQueue');
-    this.processJob('addPostToDB', 5, postsWorker.addPostToDB);
+    this.processJob('addPostToDB', 5, postsWorkers.addPostToDB);
+    this.processJob('deletePostFromDB', 5, postsWorkers.deletePostFromDB);
   }
 
   public addPostJob(name: string, data: IPostJobData): void {
