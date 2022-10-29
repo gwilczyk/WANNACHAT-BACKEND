@@ -3,55 +3,55 @@ import { Response } from 'express';
 
 export interface IAuthMock {
   _id?: string;
-  username?: string;
-  email?: string;
-  uId?: string;
-  password?: string;
   avatarColor?: string;
   avatarImage?: string;
   createdAt?: Date | string;
-  currentPassword?: string;
-  newPassword?: string;
-  confirmPassword?: string;
-  quote?: string;
-  work?: string;
-  school?: string;
-  location?: string;
-  facebook?: string;
-  instagram?: string;
-  twitter?: string;
-  youtube?: string;
-  messages?: boolean;
-  reactions?: boolean;
   comments?: boolean;
+  confirmPassword?: string;
+  currentPassword?: string;
+  email?: string;
+  facebook?: string;
   follows?: boolean;
+  instagram?: string;
+  location?: string;
+  messages?: boolean;
+  newPassword?: string;
+  password?: string;
+  quote?: string;
+  reactions?: boolean;
+  school?: string;
+  twitter?: string;
+  uId?: string;
+  username?: string;
+  work?: string;
+  youtube?: string;
 }
 
 export const signupMockData = {
   _id: '605727cd646eb50e668a4e13',
-  uId: '92241616324557172',
-  username: 'Jane',
-  email: 'jane@test.com',
-  avatarColor: '#ff9800',
-  password: 'P4ssword',
-  birthday: { month: '', day: '' },
-  postCount: 0,
-  gender: '',
-  quotes: '',
   about: '',
-  relationship: '',
+  avatarColor: '#ff9800',
+  bgImageId: '',
+  bgImageVersion: '',
+  birthday: { month: '', day: '' },
   blocked: [],
   blockedBy: [],
-  bgImageVersion: '',
-  bgImageId: '',
-  work: [],
-  school: [],
-  placesLived: [],
   createdAt: new Date(),
+  email: 'jane@test.com',
   followersCount: 0,
   followingCount: 0,
+  gender: '',
   notifications: { messages: true, reactions: true, comments: true, follows: true },
-  profilePicture: 'https://res.cloudinary.com/ratingapp/image/upload/605727cd646eb50e668a4e13'
+  password: 'P4ssword',
+  placesLived: [],
+  postCount: 0,
+  profilePicture: 'https://res.cloudinary.com/ratingapp/image/upload/605727cd646eb50e668a4e13',
+  quotes: '',
+  relationship: '',
+  school: [],
+  uId: '92241616324557172',
+  username: 'Jane',
+  work: []
 };
 
 export interface IJWT {
@@ -59,30 +59,30 @@ export interface IJWT {
 }
 
 export const authUserPayload: AuthPayload = {
-  userId: '60263f14648fed5246e322d9',
-  uId: '1621613119252066',
-  username: 'Jane',
-  email: 'jane@mail.com',
   avatarColor: '#9c27b0',
-  iat: 12345
+  email: 'jane@mail.com',
+  iat: 12345,
+  uId: '1621613119252066',
+  userId: '60263f14648fed5246e322d9',
+  username: 'Jane'
 };
 
 export const authMock = {
   _id: '60263f14648fed5246e322d3',
-  uId: '1621613119252066',
-  username: 'Jane',
-  email: 'jane@mail.com',
   avatarColor: '#9c27b0',
   createdAt: '2022-08-31T07:42:24.451Z',
-  save: () => {},
-  comparePassword: () => false
+  email: 'jane@mail.com',
+  uId: '1621613119252066',
+  username: 'Jane',
+  comparePassword: () => false,
+  save: () => {}
 } as unknown as IAuthDocument;
 
 export const authMockRequest = (sessionData: IJWT, body: IAuthMock, currentUser?: AuthPayload | null, params?: any) => ({
-  session: sessionData,
   body,
+  currentUser,
   params,
-  currentUser
+  session: sessionData
 });
 
 export const authMockResponse = (): Response => {
