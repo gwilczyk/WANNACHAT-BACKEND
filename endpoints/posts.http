@@ -30,6 +30,49 @@ withCredentials: true
   "gifUrl": "",
   "profilePicture": ""
 }
+###
+POST {{baseUrl}}/{{urlPath}}/post
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "post": "This is my third post!",
+  "bgColor": "green",
+  "privacy": "Public",
+  "feelings": "angry",
+  "gifUrl": "",
+  "profilePicture": ""
+}
+###
+POST {{baseUrl}}/{{urlPath}}/post
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "post": "This is my fourth post!",
+  "bgColor": "green",
+  "privacy": "Public",
+  "feelings": "angry",
+  "gifUrl": "",
+  "profilePicture": ""
+}
+###
+POST {{baseUrl}}/{{urlPath}}/post
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "post": "This is my fifth post!",
+  "bgColor": "green",
+  "privacy": "Public",
+  "feelings": "angry",
+  "gifUrl": "",
+  "profilePicture": ""
+}
+
 
 ###
 POST {{baseUrl}}/{{urlPath}}/post-with-image
