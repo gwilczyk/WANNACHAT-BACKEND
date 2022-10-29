@@ -5,7 +5,7 @@ import { uploads } from '@globals/helpers/cloudinary-upload';
 import { BadRequestError } from '@globals/helpers/error-handler';
 import { Helpers } from '@globals/helpers/helpers';
 import { config } from '@root/config';
-import { authService } from '@services/db/auth.service';
+import { authServices } from '@services/db/auth.services';
 import { authQueue } from '@services/queues/auth.queue';
 import { userQueue } from '@services/queues/user.queue';
 import { UserCache } from '@services/redis/user.cache';
@@ -24,7 +24,7 @@ export class Signup {
   public async create(req: Request, res: Response): Promise<void> {
     const { username, password, email, avatarColor, avatarImage } = req.body;
 
-    const userExists: IAuthDocument = await authService.getAuthUserByUsernameOrEmail({ username, email });
+    const userExists: IAuthDocument = await authServices.getAuthUserByUsernameOrEmail({ username, email });
     if (userExists) {
       throw new BadRequestError('Invalid credentials');
     }

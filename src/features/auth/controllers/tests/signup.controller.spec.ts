@@ -2,7 +2,7 @@ import { Signup } from '@auth/controllers/signup.controller';
 import * as cloudinaryUpload from '@globals/helpers/cloudinary-upload';
 import { CustomError } from '@globals/helpers/error-handler';
 import { authMock, authMockRequest, authMockResponse } from '@mocks/auth.mock';
-import { authService } from '@services/db/auth.service';
+import { authService } from '@services/db/auth.services';
 import { UserCache } from '@services/redis/user.cache';
 import { Request, Response } from 'express';
 

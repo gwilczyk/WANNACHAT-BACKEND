@@ -1,5 +1,5 @@
 import { config } from '@root/config';
-import { postsService } from '@services/db/posts.service';
+import { postsServices } from '@services/db/posts.services';
 import { DoneCallback, Job } from 'bull';
 import Logger from 'bunyan';
 
@@ -9,7 +9,7 @@ class PostsWorker {
   async addPostToDB(job: Job, done: DoneCallback): Promise<void> {
     try {
       const { key, value } = job.data;
-      await postsService.addPostToDB(key, value);
+      await postsServices.addPostToDB(key, value);
       job.progress(100);
       done(null, job.data);
     } catch (error) {

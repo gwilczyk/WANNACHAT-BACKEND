@@ -2,7 +2,7 @@
 import { Password } from '@auth/controllers/password.controller';
 import { CustomError } from '@globals/helpers/error-handler';
 import { authMock, authMockRequest, authMockResponse } from '@mocks/auth.mock';
-import { authService } from '@services/db/auth.service';
+import { authService } from '@services/db/auth.services';
 import { emailQueue } from '@services/queues/email.queue';
 import { Request, Response } from 'express';
 

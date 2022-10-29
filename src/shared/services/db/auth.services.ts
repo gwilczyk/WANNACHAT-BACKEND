@@ -2,7 +2,7 @@ import { IAuthDocument } from '@auth/interfaces/auth.interfaces';
 import { AuthModel } from '@auth/models/auth.model';
 import { Helpers } from '@globals/helpers/helpers';
 
-class AuthService {
+class AuthServices {
   public async createAuthUser(data: IAuthDocument): Promise<void> {
     await AuthModel.create(data);
   }
@@ -33,4 +33,4 @@ class AuthService {
   }
 }
 
-export const authService: AuthService = new AuthService();
+export const authServices: AuthServices = new AuthServices();

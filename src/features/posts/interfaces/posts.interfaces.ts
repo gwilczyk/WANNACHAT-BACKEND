@@ -23,9 +23,9 @@ export interface IPostDocument extends Document {
 
 export interface IGetPostsQuery {
   _id?: ObjectId | string;
-  username?: string;
-  imgId?: string;
   gifUrl?: string;
+  imgId?: string;
+  username?: string;
 }
 
 export interface ISavePostToCache {
