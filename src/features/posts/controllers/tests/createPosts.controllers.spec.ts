@@ -3,7 +3,7 @@ import * as cloudinaryUploads from '@globals/helpers/cloudinary-upload';
 import { CustomError } from '@globals/helpers/error-handler';
 import { authUserPayload } from '@mocks/auth.mock';
 import { newPost, postMockRequest, postMockResponse } from '@mocks/posts.mock';
-import { Create } from '@posts/controllers/createPost.controller';
+import { Create } from '@posts/controllers/createPosts.controllers';
 import { postsQueue } from '@services/queues/posts.queue';
 import { PostsCache } from '@services/redis/posts.cache';
 import * as postsServer from '@sockets/posts.sockets';

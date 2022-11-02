@@ -21,7 +21,7 @@ class PostsServices {
     await Promise.all([deletePost, decrementPostCount]);
   }
 
-  public async getPosts(query: IGetPostsQuery, skip = 0, limit = 0, sort: Record<string, 1 | -1>): Promise<IPostDocument[]> {
+  public async getPostsFromDB(query: IGetPostsQuery, skip = 0, limit = 0, sort: Record<string, 1 | -1>): Promise<IPostDocument[]> {
     let postQuery = {};
     if (query?.imgId && query?.gifUrl) {
       postQuery = { $or: [{ imgId: { $ne: '' } }, { gifUrl: { $ne: '' } }] };
@@ -32,9 +32,14 @@ class PostsServices {
     return posts;
   }
 
-  public async postsCount(): Promise<number> {
+  public async postsCountInDB(): Promise<number> {
     const count: number = await PostModel.find({}).countDocuments();
     return count;
+  }
+
+  public async updatePostInDB(postId: string, updatedPost: IPostDocument): Promise<void> {
+    const postUpdated: UpdateQuery<IPostDocument> = PostModel.updateOne({ _id: postId }, { $set: updatedPost });
+    await Promise.all([postUpdated]);
   }
 }
 

@@ -1,6 +1,6 @@
 import { authUserPayload } from '@mocks/auth.mock';
 import { newPost, postMockRequest, postMockResponse } from '@mocks/posts.mock';
-import { Delete } from '@posts/controllers/deletePost.controller';
+import { Delete } from '@posts/controllers/deletePosts.controllers';
 import { postsQueue } from '@services/queues/posts.queue';
 import { PostsCache } from '@services/redis/posts.cache';
 import * as postsServer from '@sockets/posts.sockets';

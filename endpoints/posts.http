@@ -109,3 +109,20 @@ DELETE {{baseUrl}}/{{urlPath}}/posts/635d26833621995bd8f36a6e
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
+
+###
+PUT {{baseUrl}}/{{urlPath}}/posts/6362c03a0da3b188b0d00497
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "bgColor": "#afafaf",
+  "feelings": "happy",
+  "gifUrl": "",
+  "imgId": "",
+  "imgVersion": "",
+  "post": "This is my second post! Just updated !",
+  "privacy": "Public",
+  "profilePicture": ""
+}

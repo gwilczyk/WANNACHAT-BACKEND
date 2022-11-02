@@ -7,7 +7,7 @@ import HTTP_STATUS from 'http-status-codes';
 const postsCache: PostsCache = new PostsCache();
 const PAGE_SIZE = 10;
 
-export class Get {
+export class Read {
   public async posts(req: Request, res: Response): Promise<void> {
     const { page } = req.params;
     const skip: number = (parseInt(page, 10) - 1) * PAGE_SIZE;
@@ -24,8 +24,8 @@ export class Get {
       totalPosts = await postsCache.getPostsNumberInCache();
     } else {
       /* Posts fetched from MongoDB */
-      posts = await postsServices.getPosts({}, skip, limit, { createdAt: -1 });
-      totalPosts = await postsServices.postsCount();
+      posts = await postsServices.getPostsFromDB({}, skip, limit, { createdAt: -1 });
+      totalPosts = await postsServices.postsCountInDB();
     }
 
     res.status(HTTP_STATUS.OK).json({ message: 'All posts', posts, totalPosts });
@@ -41,7 +41,7 @@ export class Get {
     const cachedPosts: IPostDocument[] = await postsCache.getPostsWithImageFromCache('post', newSkip, limit);
     posts = cachedPosts.length
       ? cachedPosts
-      : await postsServices.getPosts({ imgId: '$ne', gifUrl: '$ne' }, skip, limit, { createdAt: -1 });
+      : await postsServices.getPostsFromDB({ imgId: '$ne', gifUrl: '$ne' }, skip, limit, { createdAt: -1 });
 
     res.status(HTTP_STATUS.OK).json({ message: 'All posts with image', posts });
   }
