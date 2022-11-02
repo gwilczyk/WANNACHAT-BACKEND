@@ -36,9 +36,9 @@ export class Password {
 
   @joiValidation(passwordSchema)
   public async update(req: Request, res: Response): Promise<void> {
-    const { password, confirmPassword } = req.body;
+    const { cpassword, password } = req.body;
     const { token } = req.params;
-    if (password !== confirmPassword) {
+    if (password !== cpassword) {
       throw new BadRequestError('Passwords do not match');
     }
     const existingUser: IAuthDocument = await authServices.getAuthUserByPasswordToken(token);
