@@ -36,12 +36,13 @@ withCredentials: true
 
 {
   "post": "This is my second post!",
-  "bgColor": "green",
+  "bgColor": "",
   "privacy": "Public",
   "feelings": "angry",
   "gifUrl": "",
   "profilePicture": ""
 }
+
 ###
 POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
@@ -56,6 +57,7 @@ withCredentials: true
   "gifUrl": "",
   "profilePicture": ""
 }
+
 ###
 POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
@@ -70,6 +72,7 @@ withCredentials: true
   "gifUrl": "",
   "profilePicture": ""
 }
+
 ###
 POST {{baseUrl}}/{{urlPath}}/posts
 Content-Type: application/json
