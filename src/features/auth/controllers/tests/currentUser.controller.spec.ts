@@ -7,7 +7,7 @@ import { Request, Response } from 'express';
 
 jest.mock('@services/queues/base.queue');
 jest.mock('@services/redis/user.cache');
-jest.mock('@services/db/user.service');
+jest.mock('@services/db/user.services');
 
 const USERNAME = 'Jane';
 const PASSWORD = 'P4ssword';

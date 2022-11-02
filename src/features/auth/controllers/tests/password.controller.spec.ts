@@ -13,7 +13,7 @@ const CORRECT_PASSWORD = 'P4ssword';
 
 jest.mock('@services/queues/base.queue');
 jest.mock('@services/queues/email.queue');
-jest.mock('@services/db/auth.service');
+jest.mock('@services/db/auth.services');
 jest.mock('@services/emails/mail.transport');
 
 describe('Password', () => {
@@ -79,7 +79,7 @@ describe('Password', () => {
     });
 
     it('should throw "Passwords should match" error with statusCode 400 if password and confirmPassword are different', () => {
-      const req: Request = authMockRequest({}, { password: CORRECT_PASSWORD, confirmPassword: `${CORRECT_PASSWORD}different` }) as Request;
+      const req: Request = authMockRequest({}, { password: CORRECT_PASSWORD, cpassword: `${CORRECT_PASSWORD}different` }) as Request;
       const res: Response = authMockResponse();
       Password.prototype.update(req, res).catch((error: CustomError) => {
         expect(error.statusCode).toEqual(400);
@@ -88,7 +88,7 @@ describe('Password', () => {
     });
 
     it('should throw "Reset token has expired" error with statusCode 400 if reset token has expired', () => {
-      const req: Request = authMockRequest({}, { password: CORRECT_PASSWORD, confirmPassword: CORRECT_PASSWORD }, null, {
+      const req: Request = authMockRequest({}, { password: CORRECT_PASSWORD, cpassword: CORRECT_PASSWORD }, null, {
         token: ''
       }) as Request;
       const res: Response = authMockResponse();
@@ -100,7 +100,7 @@ describe('Password', () => {
     });
 
     it('should send correct json response', async () => {
-      const req: Request = authMockRequest({}, { password: CORRECT_PASSWORD, confirmPassword: CORRECT_PASSWORD }, null, {
+      const req: Request = authMockRequest({}, { password: CORRECT_PASSWORD, cpassword: CORRECT_PASSWORD }, null, {
         token: '12sde3'
       }) as Request;
       const res: Response = authMockResponse();

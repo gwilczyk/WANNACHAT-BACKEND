@@ -7,7 +7,7 @@ export interface IAuthMock {
   avatarImage?: string;
   createdAt?: Date | string;
   comments?: boolean;
-  confirmPassword?: string;
+  cpassword?: string;
   currentPassword?: string;
   email?: string;
   facebook?: string;
