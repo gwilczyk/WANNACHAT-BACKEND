@@ -1,4 +1,4 @@
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { ObjectId } from 'mongodb';
 import { Document } from 'mongoose';
 

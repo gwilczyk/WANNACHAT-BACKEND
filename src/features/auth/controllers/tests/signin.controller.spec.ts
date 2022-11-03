@@ -4,8 +4,8 @@ import { CustomError } from '@globals/helpers/error-handler';
 import { Helpers } from '@globals/helpers/helpers';
 import { authMock, authMockRequest, authMockResponse } from '@mocks/auth.mock';
 import { mergedAuthAndUserData } from '@mocks/user.mock';
-import { authService } from '@services/db/auth.service';
-import { userService } from '@services/db/user.service';
+import { authServices } from '@services/db/auth.services';
+import { userServices } from '@services/db/user.services';
 import { Request, Response } from 'express';
 
 const EMAIL = 'jane@mail.com';
@@ -75,10 +75,10 @@ describe('Signin', () => {
   it('should throw "Invalid credentials" error with statusCode 400 if username does not exist', () => {
     const req: Request = authMockRequest({}, { email: EMAIL, password: PASSWORD }) as Request;
     const res: Response = authMockResponse();
-    jest.spyOn(authService, 'getAuthUserByEmail').mockResolvedValueOnce(null as any);
+    jest.spyOn(authServices, 'getAuthUserByEmail').mockResolvedValueOnce(null as any);
 
     Signin.prototype.read(req, res).catch((error: CustomError) => {
-      expect(authService.getAuthUserByEmail).toHaveBeenCalledWith(Helpers.lowerCase(req.body.email));
+      expect(authServices.getAuthUserByEmail).toHaveBeenCalledWith(Helpers.lowerCase(req.body.email));
       expect(error.statusCode).toEqual(400);
       expect(error.serializeErrors().message).toEqual('Invalid credentials');
     });
@@ -87,10 +87,10 @@ describe('Signin', () => {
   it('should throw "Invalid credentials" error with statusCode 400 if password does not match', () => {
     const req: Request = authMockRequest({}, { email: EMAIL, password: PASSWORD }) as Request;
     const res: Response = authMockResponse();
-    jest.spyOn(authService, 'getAuthUserByEmail').mockResolvedValueOnce(null as any);
+    jest.spyOn(authServices, 'getAuthUserByEmail').mockResolvedValueOnce(null as any);
 
     Signin.prototype.read(req, res).catch((error: CustomError) => {
-      expect(authService.getAuthUserByEmail).toHaveBeenCalledWith(Helpers.lowerCase(req.body.email));
+      expect(authServices.getAuthUserByEmail).toHaveBeenCalledWith(Helpers.lowerCase(req.body.email));
       expect(error.statusCode).toEqual(400);
       expect(error.serializeErrors().message).toEqual('Invalid credentials');
     });
@@ -100,8 +100,8 @@ describe('Signin', () => {
     const req: Request = authMockRequest({}, { email: EMAIL, password: PASSWORD }) as Request;
     const res: Response = authMockResponse();
     authMock.comparePassword = () => Promise.resolve(true);
-    jest.spyOn(authService, 'getAuthUserByEmail').mockResolvedValue(authMock);
-    jest.spyOn(userService, 'getUserByAuthId').mockResolvedValue(mergedAuthAndUserData);
+    jest.spyOn(authServices, 'getAuthUserByEmail').mockResolvedValue(authMock);
+    jest.spyOn(userServices, 'getUserByAuthId').mockResolvedValue(mergedAuthAndUserData);
 
     await Signin.prototype.read(req, res);
     expect(req.session?.jwt).toBeDefined();

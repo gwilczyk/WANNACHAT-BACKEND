@@ -1,8 +1,8 @@
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { UserModel } from '@user/models/user.model';
 import mongoose from 'mongoose';
 
-class UserService {
+class UserServices {
   public async createUser(data: IUserDocument): Promise<void> {
     await UserModel.create(data);
   }
@@ -44,4 +44,4 @@ class UserService {
   }
 }
 
-export const userService: UserService = new UserService();
+export const userServices: UserServices = new UserServices();
