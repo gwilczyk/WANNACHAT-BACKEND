@@ -1,6 +1,13 @@
 import { ObjectId } from 'mongodb';
 import { Document } from 'mongoose';
 
+export interface ISavePostReactionToCache {
+  postId: ObjectId | string;
+  postReactions: IReactions;
+  previousReaction: string;
+  reaction: IReactionDocument;
+  type: string;
+}
 export interface IReactionDocument extends Document {
   _id?: string | ObjectId;
   avataColor: string;
