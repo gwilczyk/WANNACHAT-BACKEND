@@ -3,33 +3,33 @@ import { Document } from 'mongoose';
 
 export interface IReactionDocument extends Document {
   _id?: string | ObjectId;
-  username: string;
   avataColor: string;
-  type: string;
+  comment?: string;
+  createdAt?: Date;
   postId: string;
   profilePicture: string;
-  createdAt?: Date;
+  type: string;
+  username: string;
   userTo?: string | ObjectId;
-  comment?: string;
 }
 
 export interface IReactions {
+  angry: number;
+  happy: number;
   like: number;
   love: number;
-  happy: number;
-  wow: number;
   sad: number;
-  angry: number;
+  wow: number;
 }
 
 export interface IReactionJob {
   postId: string;
-  username: string;
   previousReaction: string;
-  userTo?: string;
-  userFrom?: string;
-  type?: string;
   reactionObject?: IReactionDocument;
+  type?: string;
+  userFrom?: string;
+  username: string;
+  userTo?: string;
 }
 
 export interface IQueryReaction {
