@@ -19,6 +19,7 @@ class PostsRoutes {
     this.router.get('/posts/image/:page', authMiddleware.checkAuthentication, Read.prototype.postsWithImage);
     this.router.get('/posts/:page', authMiddleware.checkAuthentication, Read.prototype.posts);
 
+    this.router.put('/posts/image/:postId', authMiddleware.checkAuthentication, Update.prototype.postWithImage);
     this.router.put('/posts/:postId', authMiddleware.checkAuthentication, Update.prototype.post);
 
     this.router.delete('/posts/:postId', authMiddleware.checkAuthentication, Delete.prototype.post);
