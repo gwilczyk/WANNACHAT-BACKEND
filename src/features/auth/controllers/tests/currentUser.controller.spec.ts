@@ -2,12 +2,12 @@ import { CurrentUser } from '@auth/controllers/currentUser.controller';
 import { authMockRequest, authMockResponse, authUserPayload } from '@mocks/auth.mock';
 import { existingUser } from '@mocks/user.mock';
 import { UserCache } from '@services/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { Request, Response } from 'express';
 
 jest.mock('@services/queues/base.queue');
 jest.mock('@services/redis/user.cache');
-jest.mock('@services/db/user.service');
+jest.mock('@services/db/user.services');
 
 const USERNAME = 'Jane';
 const PASSWORD = 'P4ssword';

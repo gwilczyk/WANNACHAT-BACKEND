@@ -1,5 +1,5 @@
 import { config } from '@root/config';
-import { userService } from '@services/db/user.service';
+import { userServices } from '@services/db/user.services';
 import { DoneCallback, Job } from 'bull';
 import Logger from 'bunyan';
 
@@ -9,7 +9,7 @@ class UserWorker {
   async addUserToDB(job: Job, done: DoneCallback): Promise<void> {
     try {
       const { value } = job.data;
-      await userService.createUser(value);
+      await userServices.createUser(value);
       job.progress(100);
       done(null, job.data);
     } catch (error) {

@@ -1,15 +1,15 @@
-import { IAuthDocument, ISignupData } from '@auth/interfaces/auth.interface';
+import { IAuthDocument, ISignupData } from '@auth/interfaces/auth.interfaces';
 import { signupSchema } from '@auth/schemes/signup.scheme';
 import { joiValidation } from '@globals/decorators/joi-validation.decorators';
 import { uploads } from '@globals/helpers/cloudinary-upload';
 import { BadRequestError } from '@globals/helpers/error-handler';
 import { Helpers } from '@globals/helpers/helpers';
 import { config } from '@root/config';
-import { authService } from '@services/db/auth.service';
+import { authServices } from '@services/db/auth.services';
 import { authQueue } from '@services/queues/auth.queue';
 import { userQueue } from '@services/queues/user.queue';
 import { UserCache } from '@services/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { UploadApiResponse } from 'cloudinary';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
@@ -24,7 +24,7 @@ export class Signup {
   public async create(req: Request, res: Response): Promise<void> {
     const { username, password, email, avatarColor, avatarImage } = req.body;
 
-    const userExists: IAuthDocument = await authService.getAuthUserByUsernameOrEmail({ username, email });
+    const userExists: IAuthDocument = await authServices.getAuthUserByUsernameOrEmail({ username, email });
     if (userExists) {
       throw new BadRequestError('Invalid credentials');
     }
@@ -34,11 +34,11 @@ export class Signup {
     const uId = `${Helpers.generateRandomIntegers(12)}`;
     const authData: IAuthDocument = Signup.prototype.signupData({
       _id: authObjectId,
-      uId,
-      username,
+      avatarColor,
       email,
       password,
-      avatarColor
+      uId,
+      username
     });
 
     const result: UploadApiResponse = (await uploads(avatarImage, `${userObjectId}`, true, true)) as UploadApiResponse;

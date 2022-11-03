@@ -18,6 +18,8 @@
       "@user/*": ["src/features/user/*"],
       "@globals/*": ["src/shared/globals/*"],
       "@mocks/*": ["src/mocks/*"],
+      "@posts/*": ["src/features/posts/*"],
+      "@reactions/*": ["src/features/reactions/*"],
       "@services/*": ["src/shared/services/*"],
       "@sockets/*": ["src/shared/sockets/*"],
       "@workers/*": ["src/shared/workers/*"],
@@ -26,8 +28,7 @@
     "plugins": [{ "transform": "typescript-transform-paths" }, { "transform": "typescript-transform-paths", "afterDeclarations": true }],
     "pretty": true,
     "resolveJsonModule": true,
-    /* removing rootDir because of jest.config.ts not into src folder */
-    // "rootDir": "src",
+    "rootDir": ".",
     "sourceMap": true,
     "strict": true,
     "target": "es2016"

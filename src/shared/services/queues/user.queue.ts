@@ -1,5 +1,5 @@
 import { BaseQueue } from '@services/queues/base.queue';
-import { IUserJob } from '@user/interfaces/user.interface';
+import { IUserJob } from '@user/interfaces/user.interfaces';
 import { userWorker } from '@workers/user.worker';
 
 class UserQueue extends BaseQueue {
