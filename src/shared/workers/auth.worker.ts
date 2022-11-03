@@ -1,5 +1,5 @@
 import { config } from '@root/config';
-import { authService } from '@services/db/auth.service';
+import { authServices } from '@services/db/auth.services';
 import { DoneCallback, Job } from 'bull';
 import Logger from 'bunyan';
 
@@ -9,7 +9,7 @@ class AuthWorker {
   async addAuthUserToDB(job: Job, done: DoneCallback): Promise<void> {
     try {
       const { value } = job.data;
-      await authService.createAuthUser(value);
+      await authServices.createAuthUser(value);
       job.progress(100);
       done(null, job.data);
     } catch (error) {

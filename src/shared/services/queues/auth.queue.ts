@@ -1,4 +1,4 @@
-import { IAuthJob } from '@auth/interfaces/auth.interface';
+import { IAuthJob } from '@auth/interfaces/auth.interfaces';
 import { BaseQueue } from '@services/queues/base.queue';
 import { authWorker } from '@workers/auth.worker';
 

@@ -1,6 +1,6 @@
-import { userService } from '@services/db/user.service';
+import { userServices } from '@services/db/user.services';
 import { UserCache } from '@services/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 
@@ -13,7 +13,7 @@ export class CurrentUser {
     let user = null;
 
     const cachedUser: IUserDocument = (await userCache.getUserFromCache(`${req.currentUser!.userId}`)) as IUserDocument;
-    const existingUser: IUserDocument = cachedUser ? cachedUser : await userService.getUserByAuthId(`${req.currentUser!.userId}`);
+    const existingUser: IUserDocument = cachedUser ? cachedUser : await userServices.getUserByAuthId(`${req.currentUser!.userId}`);
 
     if (Object.keys(existingUser).length) {
       isUser = true;

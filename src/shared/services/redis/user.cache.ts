@@ -2,7 +2,7 @@ import { ServerError } from '@globals/helpers/error-handler';
 import { Helpers } from '@globals/helpers/helpers';
 import { config } from '@root/config';
 import { BaseCache } from '@services/redis/base.cache';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
 import Logger from 'bunyan';
 
 const log: Logger = config.createLogger('userCache');
