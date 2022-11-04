@@ -8,10 +8,10 @@ Accept: application/json
 withCredentials: true
 
 {
-  "postId": "6362c03a0da3b188b0d00497",
-  "postReactions": { "like": 0, "love": 1, "happy": 0, "wow": 0, "sad": 0,"angry": 0 },
+  "postId": "63655d8d21f3afbd3d671945",
+  "postReactions": { "like": 0, "love": 0, "happy": 0, "wow": 1, "sad": 0,"angry": 0 },
   "previousReaction": "happy",
   "profilePicture": "https://res.cloudinary.com/deq8aqjgy/image/upload/v1667327427/636165c200f16260cb5165f8",
-  "type": "love",
+  "type": "sad",
   "userTo": "636165c200f16260cb5165f8"
 }

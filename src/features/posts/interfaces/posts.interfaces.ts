@@ -35,7 +35,7 @@ export interface ISavePostToCache {
   uId: string;
 }
 
-export interface IPostJobData {
+export interface IPostJob {
   key?: string;
   value?: IPostDocument;
   keyOne?: string;

@@ -1,6 +1,7 @@
 import { joiValidation } from '@globals/decorators/joi-validation.decorators';
-import { IReactionDocument } from '@reactions/interfaces/reactions.interfaces';
+import { IReactionDocument, IReactionJob } from '@reactions/interfaces/reactions.interfaces';
 import { addReactionSchema } from '@reactions/schemes/reactions.schemes';
+import { reactionsQueue } from '@services/queues/reactions.queue';
 import { ReactionsCache } from '@services/redis/reactions.cache';
 // import { socketIOPostsObject } from '@sockets/posts.sockets';
 import { Request, Response } from 'express';
@@ -27,7 +28,16 @@ export class Create {
 
     await reactionsCache.savePostReactionToCache({ postId, postReactions, previousReaction, reaction, type });
 
-    // postsQueue.addPostJob('addPostReactionToDB', { key: req.currentUser!.userId, value: createdPost });
+    const reactionDataForDB: IReactionJob = {
+      postId,
+      previousReaction,
+      reactionObject: reaction,
+      type,
+      userFrom: req.currentUser!.userId,
+      username: req.currentUser!.username,
+      userTo
+    };
+    reactionsQueue.addReactionJob('addReactionToDB', reactionDataForDB);
 
     res.status(HTTP_STATUS.OK).json({ message: 'Post reaction created successfully' });
   }
