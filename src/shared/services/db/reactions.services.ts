@@ -27,6 +27,23 @@ class ReactionsServices {
 
     /* TODO: Send reactions notifications (if enabled by user) */
   }
+
+  public async removeReactionFromDB(reaction: IReactionJob): Promise<void> {
+    const { postId, previousReaction, username } = reaction;
+
+    await Promise.all([
+      ReactionModel.deleteOne({ postId, type: previousReaction, username }),
+      PostModel.updateOne(
+        { _id: postId },
+        {
+          $inc: {
+            [`reactions.${previousReaction}`]: -1
+          }
+        },
+        { new: true }
+      )
+    ]);
+  }
 }
 
 export const reactionsServices: ReactionsServices = new ReactionsServices();
