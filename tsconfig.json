@@ -15,13 +15,14 @@
     "outDir": "./build",
     "paths": {
       "@auth/*": ["src/features/auth/*"],
-      "@user/*": ["src/features/user/*"],
+      "@comments/*": ["src/features/comments/*"],
       "@globals/*": ["src/shared/globals/*"],
       "@mocks/*": ["src/mocks/*"],
       "@posts/*": ["src/features/posts/*"],
       "@reactions/*": ["src/features/reactions/*"],
       "@services/*": ["src/shared/services/*"],
       "@sockets/*": ["src/shared/sockets/*"],
+      "@user/*": ["src/features/user/*"],
       "@workers/*": ["src/shared/workers/*"],
       "@root/*": ["src/*"] /* @root must be the last path! */
     },
