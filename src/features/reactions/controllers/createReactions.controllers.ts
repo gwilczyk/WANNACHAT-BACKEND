@@ -3,7 +3,6 @@ import { IReactionDocument, IReactionJob } from '@reactions/interfaces/reactions
 import { addReactionSchema } from '@reactions/schemes/reactions.schemes';
 import { reactionsQueue } from '@services/queues/reactions.queue';
 import { ReactionsCache } from '@services/redis/reactions.cache';
-// import { socketIOPostsObject } from '@sockets/posts.sockets';
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { ObjectId } from 'mongodb';
@@ -23,8 +22,6 @@ export class Create {
       type,
       username: req.currentUser!.username
     } as unknown as IReactionDocument;
-
-    // socketIOPostsObject.emit('add post reaction', reaction);
 
     await reactionsCache.savePostReactionToCache({ postId, postReactions, previousReaction, reaction, type });
 
