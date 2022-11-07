@@ -39,7 +39,7 @@ withCredentials: true
 
 {
   "email": "john@mail.com",
-  "password": "P4ssword"
+  "password": "test1234"
 }
 
 ###

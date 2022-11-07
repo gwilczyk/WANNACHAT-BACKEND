@@ -23,13 +23,14 @@ const config: Config.InitialOptions = {
   coverageReporters: ['text-summary', 'lcov'],
   moduleNameMapper: {
     '@auth/(.*)': ['<rootDir>/src/features/auth/$1'],
-    '@user/(.*)': ['<rootDir>/src/features/user/$1'],
+    '@comments/(.*)': ['<rootDir>/src/features/comments/$1'],
     '@globals/(.*)': ['<rootDir>/src/shared/globals/$1'],
     '@mocks/(.*)': ['<rootDir>/src/mocks/$1'],
     '@posts/(.*)': ['<rootDir>/src/features/posts/$1'],
     '@reactions/(.*)': ['<rootDir>/src/features/reactions/$1'],
     '@services/(.*)': ['<rootDir>/src/shared/services/$1'],
     '@sockets/(.*)': ['<rootDir>/src/shared/sockets/$1'],
+    '@user/(.*)': ['<rootDir>/src/features/user/$1'],
     '@workers/(.*)': ['<rootDir>/src/shared/workers/$1'],
     '@root/(.*)': ['<rootDir>/src/$1']
   }
