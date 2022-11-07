@@ -2,6 +2,7 @@ import { IAuthJob } from '@auth/interfaces/auth.interfaces';
 import { createBullBoard } from '@bull-board/api';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
+import { ICommentJob } from '@comments/interfaces/comments.interfaces';
 import { IPostJob } from '@posts/interfaces/posts.interfaces';
 import { IReactionJob } from '@reactions/interfaces/reactions.interfaces';
 import { config } from '@root/config';
@@ -9,7 +10,7 @@ import { IEmailJob, IUserJob } from '@user/interfaces/user.interfaces';
 import Queue, { Job } from 'bull';
 import Logger from 'bunyan';
 
-type IBaseJobData = IAuthJob | IEmailJob | IPostJob | IReactionJob | IUserJob;
+type IBaseJobData = IAuthJob | ICommentJob | IEmailJob | IPostJob | IReactionJob | IUserJob;
 
 let bullAdapters: BullAdapter[] = [];
 
