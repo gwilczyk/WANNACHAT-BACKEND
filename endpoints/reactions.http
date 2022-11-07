@@ -25,7 +25,7 @@ withCredentials: true
 {}
 
 ###
-GET {{baseUrl}}/{{urlPath}}/posts/reaction/63655d8d21f3afbd3d671945/Jane Doe
+GET {{baseUrl}}/{{urlPath}}/posts/reaction/63655d8d21f3afbd3d671945/Jane
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
