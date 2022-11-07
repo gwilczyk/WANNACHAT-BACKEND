@@ -3,21 +3,21 @@ import { Document } from 'mongoose';
 
 export interface ICommentDocument extends Document {
   _id?: string | ObjectId;
-  username: string;
   avatarColor: string;
-  postId: string;
-  profilePicture: string;
   comment: string;
   createdAt?: Date;
+  postId: string;
+  profilePicture: string;
+  username: string;
   userTo?: string | ObjectId;
 }
 
 export interface ICommentJob {
+  comment: ICommentDocument;
   postId: string;
-  userTo: string;
   userFrom: string;
   username: string;
-  comment: ICommentDocument;
+  userTo: string;
 }
 
 export interface ICommentNameList {
